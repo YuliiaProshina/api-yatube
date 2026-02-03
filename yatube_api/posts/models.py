@@ -7,7 +7,8 @@ MAX_GROUP_TITLE_LENGTH = 200
 
 
 class Group(models.Model):
-    title = models.CharField('Название группы', max_length=MAX_GROUP_TITLE_LENGTH)
+    title = models.CharField('Название группы',
+                             max_length=MAX_GROUP_TITLE_LENGTH)
     slug = models.SlugField('Слаг', unique=True)
     description = models.TextField('Описание группы')
 
@@ -23,9 +24,10 @@ class Post(models.Model):
     text = models.TextField('Текст публикации')
     pub_date = models.DateTimeField('Дата публикации', auto_now_add=True)
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='posts', verbose_name='Автор публикации')
+        User, on_delete=models.CASCADE, related_name='posts',
+        verbose_name='Автор публикации')
     image = models.ImageField('Изображение',
-        upload_to='posts/', null=True, blank=True
+                              upload_to='posts/', null=True, blank=True
     )
     group = models.ForeignKey(
         Group, on_delete=models.SET_NULL, related_name='posts',
