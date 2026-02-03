@@ -26,12 +26,12 @@ class Post(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='posts',
         verbose_name='Автор публикации')
-    image = models.ImageField('Изображение',
-                              upload_to='posts/', null=True, blank=True
+    image = models.ImageField(
+        'Изображение', upload_to='posts/', null=True, blank=True
     )
     group = models.ForeignKey(
         Group, on_delete=models.SET_NULL, related_name='posts',
-        blank=True, null=True,  verbose_name='Группа'
+        blank=True, null=True, verbose_name='Группа'
     )
 
     class Meta:
